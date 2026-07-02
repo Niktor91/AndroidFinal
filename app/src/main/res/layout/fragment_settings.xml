@@ -1,32 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_background"
     android:gravity="center"
     android:orientation="vertical"
+    android:padding="24dp"
     tools:context=".screen.settings.SettingsFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:cardBackgroundColor="@color/md_theme_primaryContainer"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/movie_accent_soft"
+        app:strokeWidth="1dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="U"
+            android:textColor="@color/movie_accent"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+    </com.google.android.material.card.MaterialCardView>
+
     <TextView
-        android:text="@string/hello"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:layout_marginVertical="10dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/hello"
+        android:textColor="@color/movie_text_primary"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/tvSettingEmail"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="50dp" />
-
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/log_out" />
+        android:layout_marginTop="4dp"
+        android:textColor="@color/movie_text_secondary"
+        android:textSize="16sp" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogOut"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/movie_accent"
+        android:text="@string/log_out"
+        android:textAllCaps="false"
+        android:textColor="@color/md_theme_onPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="12dp" />
 
 </LinearLayout>

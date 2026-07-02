@@ -4,24 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/md_theme_background"
+    android:paddingTop="16dp"
     tools:context=".screen.home.HomeFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:background="@color/md_theme_surfaceVariant"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="4dp"
-        android:text="@string/movies"
-        android:textColor="@color/md_theme_onSurfaceVariant"
-        android:textSize="26sp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Movies"
+        android:textColor="@color/movie_text_primary"
+        android:textSize="28sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp"
+        android:text="Discover popular movies"
+        android:textColor="@color/movie_text_secondary"
+        android:textSize="14sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovies"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingBottom="92dp"
+        tools:listitem="@layout/item_movie" />
 
 </LinearLayout>

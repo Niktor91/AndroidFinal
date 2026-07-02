@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_background"
     android:fillViewport="true"
-    android:orientation="vertical"
     tools:context=".screen.detail.MovieDetailFragment">
 
     <LinearLayout
@@ -13,104 +13,181 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvMovieName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@color/md_theme_surfaceVariant"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="4dp"
-            android:textColor="@color/md_theme_onSurfaceVariant"
-            android:textSize="26sp"
-            android:textStyle="bold" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="380dp">
 
             <ImageView
                 android:id="@+id/ivMovieBackdrop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:contentDescription="@null"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textColor="#ffffff"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/ratingBar"
-                app:layout_constraintStart_toStartOf="@id/ratingBar" />
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="@style/Widget.AppCompat.RatingBar.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="20dp"
-                android:isIndicator="false"
-                android:numStars="5"
-                android:stepSize="0.5"
+            <View
+                android:id="@+id/imageFadeOverlay"
+                android:layout_width="0dp"
+                android:layout_height="260dp"
+                android:background="@drawable/bg_detail_image_fade"
+                android:clickable="false"
+                android:focusable="false"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/ratingValue"
+                android:id="@+id/tvMovieName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="12dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/movie_text_primary"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/layoutRating"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Disclosure Day" />
+
+            <LinearLayout
+                android:id="@+id/layoutRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:textColor="#ffffff"
-                android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="@id/ratingBar"
-                app:layout_constraintStart_toEndOf="@id/ratingBar"
-                app:layout_constraintTop_toTopOf="@id/ratingBar" />
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bg_rating_pill"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:progressTint="@color/movie_accent"
+                    android:secondaryProgressTint="@color/movie_accent"
+                    android:stepSize="0.5" />
+
+                <TextView
+                    android:id="@+id/ratingValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/movie_text_primary"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:text="(6.7)" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Back button must stay LAST inside ConstraintLayout so it is above image/overlay -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="#99000000"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="24dp"
+                android:translationZ="24dp"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp"
+                android:text="‹"
+                android:textColor="@color/movie_text_primary"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:cornerRadius="24dp"
+                app:elevation="24dp"
+                app:rippleColor="@color/brand_purple_soft"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tvOverview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textColor="@color/md_theme_primary"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginStart="10dp"
-            android:text="@string/genre"
-            android:textColor="@color/md_theme_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvGenre"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/cast"
-            android:textColor="@color/md_theme_primary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            android:padding="16dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Overview"
+                android:textColor="@color/movie_text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPeople"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tvOverview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="4dp"
+                android:textColor="@color/movie_text_secondary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/genre"
+                android:textColor="@color/movie_text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clipToPadding="false" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/cast"
+                android:textColor="@color/movie_text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPeople"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clipToPadding="false" />
+
+        </LinearLayout>
+
     </LinearLayout>
+
 </ScrollView>

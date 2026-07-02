@@ -1,99 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_background"
     android:fillViewport="true"
-    android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="24dp"
     tools:context=".screen.register.RegisterFragment">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="vertical">
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="0.2" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:text="@string/sign_up"
-                android:textSize="30sp"
-
+                android:textColor="@color/movie_text_primary"
+                android:textSize="34sp"
                 android:textStyle="bold" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="0.1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Create an account and start exploring movies."
+                android:textColor="@color/movie_text_secondary"
+                android:textSize="14sp" />
 
             <EditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginVertical="10dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
                 android:autofillHints="emailAddress"
+                android:background="@drawable/bg_input"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                android:paddingHorizontal="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:singleLine="true"
+                android:textColor="@color/movie_text_primary"
+                android:textColorHint="@color/movie_text_secondary"
+                android:textCursorDrawable="@null"
                 tools:text="example@gmail.com" />
 
             <EditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
                 android:autofillHints="password"
+                android:background="@drawable/bg_input"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:paddingHorizontal="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:singleLine="true"
+                android:textColor="@color/movie_text_primary"
+                android:textColorHint="@color/movie_text_secondary"
+                android:textCursorDrawable="@null"
                 tools:text="password" />
 
             <EditText
                 android:id="@+id/etRepeatPassword"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
                 android:autofillHints="password"
+                android:background="@drawable/bg_input"
                 android:hint="@string/repeat_password"
                 android:inputType="textPassword"
-                android:paddingHorizontal="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:singleLine="true"
+                android:textColor="@color/movie_text_primary"
+                android:textColorHint="@color/movie_text_secondary"
+                android:textCursorDrawable="@null"
                 tools:text="password" />
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
             <LinearLayout
-
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
 
-                <Button
-
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnBack"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
-                    android:text="@string/back" />
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/button_secondary_bg"
+                    android:text="@string/back"
+                    android:textAllCaps="false"
+                    android:textColor="@color/movie_text_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/sign_up" />
-            </LinearLayout>
+                    android:layout_width="0dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/movie_accent"
+                    android:text="@string/sign_up"
+                    android:textAllCaps="false"
+                    android:textColor="@color/md_theme_onPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp" />
 
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -102,8 +129,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:indeterminateTint="@color/movie_accent"
             android:visibility="gone" />
-    </FrameLayout>
 
+    </FrameLayout>
 
 </ScrollView>

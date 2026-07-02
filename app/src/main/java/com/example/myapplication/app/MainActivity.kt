@@ -1,88 +1,70 @@
 package com.example.myapplication.app
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
-    private lateinit var navController: NavController
-    private lateinit var appBarConfiguration: AppBarConfiguration
 
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
-
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
 
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, maxOf(systemBars.bottom,imeInsets.bottom))
-            insets
-        }
-
-        initBottomNavigation()
+        setupSystemBars()
+        setupNavigation()
+        setupBottomMenu()
     }
 
-    private fun initBottomNavigation() {
+    private fun setupSystemBars() {
+        window.statusBarColor = ContextCompat.getColor(this, R.color.md_theme_background)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.md_theme_background)
+
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
+        controller.isAppearanceLightStatusBars = false
+        controller.isAppearanceLightNavigationBars = false
+    }
+
+    private fun setupNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
-        navController.graph = navController.navInflater.inflate(R.navigation.nav_graph)
 
-        binding.bottomMenu.setupWithNavController(navController)
-        binding.bottomMenu.setOnApplyWindowInsetsListener(null)
-
-        binding.bottomMenu.setOnItemReselectedListener { }
-
-        binding.bottomMenu.setOnItemSelectedListener { item ->
-            navController.navigate(
-                item.itemId,
-                null,
-                NavOptions.Builder()
-                    .setLaunchSingleTop(true)
-                    .setPopUpTo(
-                        R.id.homeFragment,
-                        inclusive = false,
-                        saveState = true
-                    )
-                    .setRestoreState(true)
-                    .build()
-            )
-            true
-        }
-
-        appBarConfiguration = AppBarConfiguration(
-            getVisibleNavFragmentIds().toSet()
-        )
-
-        setBottomNavBarVisibility()
-    }
-
-    private fun getVisibleNavFragmentIds(): List<Int> {
-        return listOf(
-            R.id.homeFragment,
-            R.id.settingsFragment
-        )
-    }
-    private fun setBottomNavBarVisibility() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.bottomMenu.isVisible = destination.id in getVisibleNavFragmentIds()
-
+            val showBottomMenu = destination.id == R.id.homeFragment || destination.id == R.id.settingsFragment
+            binding.bottomMenu.isVisible = showBottomMenu
+            updateBottomMenuColors(destination.id)
         }
     }
 
+    private fun setupBottomMenu() {
+        binding.navHome.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.homeFragment) {
+                navController.navigate(R.id.homeFragment)
+            }
+        }
+
+        binding.navSettings.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.settingsFragment) {
+                navController.navigate(R.id.settingsFragment)
+            }
+        }
+    }
+
+    private fun updateBottomMenuColors(destinationId: Int) {
+        val active = ContextCompat.getColor(this, R.color.movie_accent)
+        val inactive = ContextCompat.getColor(this, R.color.icon_inactive)
+
+        binding.navHome.setTextColor(if (destinationId == R.id.homeFragment) active else inactive)
+        binding.navSettings.setTextColor(if (destinationId == R.id.settingsFragment) active else inactive)
+    }
 }

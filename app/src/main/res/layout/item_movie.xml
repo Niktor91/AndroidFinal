@@ -1,74 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/bg_movie_card"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="10dp"
-    android:layout_marginHorizontal="10dp"
-    android:paddingVertical="5dp"
-    android:layout_marginVertical="5dp"
-    >
+    android:layout_margin="8dp"
+    android:orientation="vertical">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivMovie"
-        app:shapeAppearanceOverlay="@style/corner10"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:contentDescription="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        app:cardBackgroundColor="@color/movie_card_background"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="0dp">
+
+        <ImageView
+            android:id="@+id/ivMovie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/ic_image" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/md_theme_primary"
-        app:layout_constraintStart_toEndOf="@id/ivMovie"
-        app:layout_constraintTop_toTopOf="@id/ivMovie" />
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/movie_text_primary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Avengers" />
 
-    <RatingBar
+    <LinearLayout
         android:id="@+id/rating"
-        style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:stepSize="0.5"
-        app:layout_constraintStart_toEndOf="@id/ivMovie"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvRating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:textColor="@color/md_theme_primary"
-        android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@id/rating"
-        app:layout_constraintStart_toEndOf="@id/rating"
-        app:layout_constraintTop_toTopOf="@id/rating" />
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="@color/movie_accent"
+            android:secondaryProgressTint="@color/movie_accent"
+            android:stepSize="0.5"
+            tools:rating="4" />
+
+        <TextView
+            android:id="@+id/tvRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:textColor="@color/movie_text_secondary"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:text="(8.1)" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvOverview"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:ellipsize="end"
-        android:maxLines="4"
-        android:textColor="@color/md_theme_primary"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/rating"
+        android:visibility="gone" />
 
-        app:layout_constraintTop_toBottomOf="@id/rating" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
