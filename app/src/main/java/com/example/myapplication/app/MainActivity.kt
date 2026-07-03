@@ -40,7 +40,9 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            val showBottomMenu = destination.id == R.id.homeFragment || destination.id == R.id.settingsFragment
+            val showBottomMenu = destination.id == R.id.homeFragment || 
+                               destination.id == R.id.settingsFragment ||
+                               destination.id == R.id.watchlistFragment
             binding.bottomMenu.isVisible = showBottomMenu
             updateBottomMenuColors(destination.id)
         }
@@ -50,6 +52,12 @@ class MainActivity : AppCompatActivity() {
         binding.navHome.setOnClickListener {
             if (navController.currentDestination?.id != R.id.homeFragment) {
                 navController.navigate(R.id.homeFragment)
+            }
+        }
+
+        binding.navWatchlist.setOnClickListener {
+            if (navController.currentDestination?.id != R.id.watchlistFragment) {
+                navController.navigate(R.id.watchlistFragment)
             }
         }
 
@@ -65,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         val inactive = ContextCompat.getColor(this, R.color.icon_inactive)
 
         binding.navHome.setTextColor(if (destinationId == R.id.homeFragment) active else inactive)
+        binding.navWatchlist.setTextColor(if (destinationId == R.id.watchlistFragment) active else inactive)
         binding.navSettings.setTextColor(if (destinationId == R.id.settingsFragment) active else inactive)
     }
 }

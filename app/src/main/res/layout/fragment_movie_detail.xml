@@ -119,10 +119,11 @@
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:padding="0dp"
-                android:text="‹"
-                android:textColor="@color/movie_text_primary"
-                android:textSize="34sp"
-                android:textStyle="bold"
+                app:icon="@drawable/ic_back"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconTint="@color/movie_text_primary"
+                app:iconSize="28dp"
                 app:cornerRadius="24dp"
                 app:elevation="24dp"
                 app:rippleColor="@color/brand_purple_soft"
@@ -136,6 +137,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAddToWatchlist"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/movie_accent"
+                android:text="@string/add_to_watchlist"
+                android:textAllCaps="false"
+                android:textColor="@color/md_theme_onPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"

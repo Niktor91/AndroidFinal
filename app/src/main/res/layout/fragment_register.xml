@@ -7,6 +7,7 @@
     android:background="@color/md_theme_background"
     android:fillViewport="true"
     android:padding="24dp"
+    android:clipToPadding="false"
     tools:context=".screen.register.RegisterFragment">
 
     <FrameLayout
@@ -17,7 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="48dp"
+            android:paddingBottom="80dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -52,39 +55,67 @@
                 android:textCursorDrawable="@null"
                 tools:text="example@gmail.com" />
 
-            <EditText
-                android:id="@+id/etPassword"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:autofillHints="password"
-                android:background="@drawable/bg_input"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:singleLine="true"
-                android:textColor="@color/movie_text_primary"
-                android:textColorHint="@color/movie_text_secondary"
-                android:textCursorDrawable="@null"
-                tools:text="password" />
+                android:paddingTop="0dp"
+                app:boxBackgroundMode="none"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/movie_text_secondary"
+                app:hintEnabled="false">
 
-            <EditText
-                android:id="@+id/etRepeatPassword"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:autofillHints="password"
+                    android:background="@drawable/bg_input"
+                    android:gravity="center_vertical"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:paddingStart="16dp"
+                    android:paddingTop="0dp"
+                    android:paddingEnd="48dp"
+                    android:paddingBottom="0dp"
+                    android:singleLine="true"
+                    android:textColor="@color/movie_text_primary"
+                    android:textColorHint="@color/movie_text_secondary"
+                    android:textCursorDrawable="@null"
+                    tools:text="password" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:autofillHints="password"
-                android:background="@drawable/bg_input"
-                android:hint="@string/repeat_password"
-                android:inputType="textPassword"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:singleLine="true"
-                android:textColor="@color/movie_text_primary"
-                android:textColorHint="@color/movie_text_secondary"
-                android:textCursorDrawable="@null"
-                tools:text="password" />
+                android:paddingTop="0dp"
+                app:boxBackgroundMode="none"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/movie_text_secondary"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etRepeatPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:autofillHints="password"
+                    android:background="@drawable/bg_input"
+                    android:gravity="center_vertical"
+                    android:hint="@string/repeat_password"
+                    android:inputType="textPassword"
+                    android:paddingStart="16dp"
+                    android:paddingTop="0dp"
+                    android:paddingEnd="48dp"
+                    android:paddingBottom="0dp"
+                    android:singleLine="true"
+                    android:textColor="@color/movie_text_primary"
+                    android:textColorHint="@color/movie_text_secondary"
+                    android:textCursorDrawable="@null"
+                    tools:text="password" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

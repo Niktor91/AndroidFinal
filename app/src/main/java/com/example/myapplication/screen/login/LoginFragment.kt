@@ -2,23 +2,62 @@ package com.example.myapplication.screen.login
 
 import androidx.core.text.buildSpannedString
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.base.BaseFragment
 import com.example.myapplication.databinding.FragmentLoginBinding
+import com.example.myapplication.retrofit.RetrofitProvider
 import com.example.myapplication.util.showToast
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
     private val loginService by lazy { LoginService() }
     private val navController by lazy { findNavController() }
+    private val posterAdapter by lazy { MoviePosterAdapter() }
 
     override fun init() {
         setupButtons()
+        setupMovieTape()
+    }
 
-        // UI-ს ტესტირების დროს გამორთულია, რომ Login screen ყოველთვის გამოჩნდეს.
-        // როცა ყველაფერი დასტაბილურდება, შეგიძლია ისევ ჩართო.
-        // checkIfAuthorized()
+    private fun setupMovieTape() {
+        binding.rvMovieTape.apply {
+            adapter = posterAdapter
+            // Start from a middle position to allow scrolling in both directions if needed, 
+            // though we mostly care about right-to-left.
+            scrollToPosition(Int.MAX_VALUE / 2)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    RetrofitProvider.movieService.getMovies()
+                }
+                if (response.isSuccessful) {
+                    response.body()?.results?.let { movies ->
+                        posterAdapter.submitList(movies)
+                        startAutoScroll()
+                    }
+                }
+            } catch (e: Exception) {
+                // Ignore background errors
+            }
+        }
+    }
+
+    private fun startAutoScroll() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            while (true) {
+                delay(20)
+                binding.rvMovieTape.scrollBy(2, 0)
+            }
+        }
     }
 
     private fun checkIfAuthorized() {

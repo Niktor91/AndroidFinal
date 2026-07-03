@@ -6,14 +6,14 @@
     android:orientation="vertical"
     android:background="@color/md_theme_background"
     android:paddingTop="48dp"
-    tools:context=".screen.home.HomeFragment">
+    tools:context=".screen.watchlist.WatchlistFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="Movies"
+        android:text="@string/my_watchlist"
         android:textColor="@color/movie_text_primary"
         android:textSize="28sp"
         android:textStyle="bold" />
@@ -25,12 +25,12 @@
         android:paddingTop="4dp"
         android:paddingEnd="16dp"
         android:paddingBottom="12dp"
-        android:text="Discover popular movies"
+        android:text="@string/your_saved_movies"
         android:textColor="@color/movie_text_secondary"
         android:textSize="14sp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMovies"
+        android:id="@+id/rvWatchlist"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -39,5 +39,14 @@
         android:paddingEnd="12dp"
         android:paddingBottom="92dp"
         tools:listitem="@layout/item_movie" />
+
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/your_watchlist_is_empty"
+        android:textColor="@color/movie_text_secondary"
+        android:visibility="gone" />
 
 </LinearLayout>
